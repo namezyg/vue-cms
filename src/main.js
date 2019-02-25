@@ -9,19 +9,25 @@ Vue.use(VueRouter)
 import './lib/mui/css/mui.css'
 // 导入扩展图标样式
 import './lib/mui/css/icons-extra.css'
-// 按需导入
-import { Header } from 'mint-ui'
-Vue.component(Header.name, Header)
-    // 1.3 导入自己的 router.js 路由模块
+// 1.3 导入自己的 router.js 路由模块
 import router from './router.js'
-// 轮播图模块
-import { Swipe, SwipeItem } from 'mint-ui';
+// 按需导入组件
+import { Swipe, SwipeItem, Button, Header } from 'mint-ui';
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
-// 导入resource模块
+Vue.component(Button.name, Button);
+Vue.component(Header.name, Header)
+    // 导入resource模块
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 
+Vue.http.options.root = 'http://www.liulongbin.top:3005';
+
+import moment from 'moment'
+// 定义时间全局的过滤器
+Vue.filter('dateFormat', function(dataStr, pattern) {
+    return moment(dataStr).format(pattern)
+})
 
 var vm = new Vue({
     el: '#app',
